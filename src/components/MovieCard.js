@@ -8,9 +8,9 @@ const MovieCard = ({ card }) => {
     "https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png";
   return (
     <>
-      <div class="movie_card" id="tomb">
-        <div class="info_section">
-          <div class="movie_header">
+      <div className="movie_card" id="tomb">
+        <div className="info_section">
+          <div className="movie_header">
             <img
               className="locandina"
               src={`https://image.tmdb.org/t/p/w500/${card.poster_path}`}
@@ -18,31 +18,37 @@ const MovieCard = ({ card }) => {
             />
             <h1>{card.title}</h1>
             <h4>{card.release_date}</h4>
-            <span class="minutes">{`${card.vote_average} (${card.vote_count} votes)`}</span>
-            <p class="type">Action, Fantasy</p>
+            <span className="minutes">{`${card.vote_average} (${card.vote_count} votes)`}</span>
+            <p className="type">Action, Fantasy</p>
           </div>
-          <div class="movie_desc">
-            <p class="text">
+          <div className="movie_desc">
+            <p className="text">
               {card.overview.length > 200
                 ? `${card.overview.slice(0, 200)}...`
                 : card.overview}
             </p>
           </div>
-          <div class="movie_social">
+          <div className="movie_social">
             <ul>
               <li>
-                <FontAwesomeIcon style={{ color: "red" }} icon={faHeart} />
+                <FontAwesomeIcon
+                  style={{ fontSize: "1.5rem", color: "red" }}
+                  icon={faHeart}
+                />
               </li>
               <li>
-                <FontAwesomeIcon style={{ color: "white" }} icon={faShareAlt} />
+                <FontAwesomeIcon
+                  style={{ color: "white", fontSize: "1.5rem" }}
+                  icon={faShareAlt}
+                />
               </li>
             </ul>
           </div>
         </div>
         <div
-          class="blur_back"
+          className="blur_back tomb_back"
           style={{
-            background: `url(https://image.tmdb.org/t/p/original/${card.backdrop_path})`,
+            backgroundImage: `url("https://image.tmdb.org/t/p/original/${card.backdrop_path}")`,
           }}
         ></div>
       </div>

@@ -1,15 +1,21 @@
 import React from "react";
+import "./searchform.scss";
 
 const SearchForm = ({ onChange }) => {
   return (
     <div>
-      <input
-        onChange={onChange}
-        type="text"
-        id="search-input"
-        placholder="Search..."
-      />
-      <button type="button">Search</button>
+      <form onsubmit="event.preventDefault();" role="search">
+        <label for="search">Search for stuff</label>
+        <input
+          id="search"
+          type="search"
+          onChange={onChange}
+          placeholder="Filter..."
+          autofocus
+          required
+        />
+        <button type="submit">Go</button>
+      </form>
     </div>
   );
 };

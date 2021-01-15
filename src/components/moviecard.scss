@@ -92,7 +92,7 @@ body {
             color: rgba(255, 255, 255, 0.8);
           }
           i {
-            font-size: 19px;
+            font-size: 38px;
             cursor: pointer;
           }
         }
@@ -109,7 +109,8 @@ body {
     z-index: 1;
     height: 100%;
     right: 0;
-    background-size: cover;
+    background-position: -148% 50%;
+    background-size: 110%;
     border-radius: 11px;
   }
 }
@@ -129,7 +130,8 @@ body {
 
   .blur_back {
     width: 80%;
-    background-position: -100% 10% !important;
+    background-position: -148% 50%;
+    background-size: 110%;
   }
 }
 
@@ -143,7 +145,8 @@ body {
 
   .blur_back {
     width: 100%;
-    background-position: 50% 50% !important;
+    background-position: -148% 50%;
+    background-size: 110%;
   }
 
   .movie_header {

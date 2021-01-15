@@ -4,25 +4,21 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <div>
-      <div class="page">
-        <nav class="page__menu menu">
-          <ul class="menu__list r-list">
-            <li class="menu__group">
-              <Link to="/">
-                <a href="#0" class="menu__link r-link text-underlined">
-                  Top rated
-                </a>
-              </Link>
+      <div className="page">
+        <nav className="page__menu menu">
+          <ul className="menu__list r-list">
+            <li className="menu__group">
+              <div className="menu__link r-link text-underlined">
+                <Link to="/"> Top rated</Link>
+              </div>
             </li>
-            <li class="menu__group">
-              <Link to="/movies/upcoming">
-                <a href="#0" class="menu__link r-link text-underlined">
-                  Upcoming
-                </a>
-              </Link>
+            <li className="menu__group">
+              <div className="menu__link r-link text-underlined">
+                <Link to="/movies/upcoming"> Upcoming</Link>
+              </div>
             </li>
-            <li class="menu__group">
-              <a href="#0" class="menu__link r-link text-underlined">
+            <li className="menu__group">
+              <a href="#0" className="menu__link r-link text-underlined">
                 Option #3
               </a>
             </li>

@@ -59,7 +59,7 @@ PRESENTATION STYLES
 */
 
 .menu {
-  background-color: var(--menuBackgroundColor, #f0f0f0);
+  background-color: var(--menuBackgroundColor, black);
   box-shadow: var(
     --menuBoxShadow,
     0 1px 3px 0 rgba(0, 0, 0, 0.12),
@@ -96,7 +96,8 @@ TEXT UNDERLINED
   content: "";
   width: 0;
   height: 3px;
-  background-color: var(--textUnderlinedLineColor, currentColor);
+  /* underline the links */
+  background-color: var(--textUnderlinedLineColor, white);
 
   will-change: width;
   transition: width 0.1s ease-out;
@@ -130,7 +131,7 @@ SETTINGS
 .page__custom-settings {
   --menuBackgroundColor: #6c5ce7;
   --menuLinkColor: #fff;
-  --menuLinkColorUnactive: #241c69;
+  --menuLinkColorUnactive: white;
   --menuLinkOutlineOffset: -0.5rem;
 }
 
@@ -144,6 +145,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans,
     Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
   margin: 0;
+  padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -151,9 +153,7 @@ body {
 
 .page {
   box-sizing: border-box;
-  max-width: 640px;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  max-width: 100vw;
   margin: auto;
 }
 
