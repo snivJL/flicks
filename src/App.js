@@ -9,15 +9,17 @@ function App() {
   return (
     <>
       <Navbar />
-      <Switch>
-        <Route path="/movie/:id" component={ShowMovieDetails} />
-        <Route
-          path="/movies/upcoming"
-          component={(props) => <MovieListPage {...props} type="upcoming" />}
-        />
-        <Route path="/" component={MovieListPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path="/movie/:id" component={ShowMovieDetails} />
+          <Route
+            path="/movies/upcoming"
+            component={(props) => <MovieListPage {...props} type="upcoming" />}
+          />
+          <Route path="/" component={MovieListPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
     </>
   );
 }

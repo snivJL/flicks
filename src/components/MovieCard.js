@@ -8,7 +8,7 @@ const MovieCard = ({ card }) => {
         <div class="info_section">
           <div class="movie_header">
             <img
-              class="locandina"
+              className="locandina"
               src="https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg"
             />
             <h1>Tomb Raider</h1>
