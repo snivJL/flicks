@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import SearchForm from "../components/SearchForm";
+import MovieCard from "../components/MovieCard";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
 const API_URL = process.env.REACT_APP_URL_API;
@@ -46,7 +47,11 @@ const MovieListPage = ({ type }) => {
         {loading ? (
           <h1>Loading</h1>
         ) : (
-          filteredMovies.map((movie) => <li key={movie.id}>{movie.title}</li>)
+          filteredMovies.map((movie) => (
+            <li key={movie.id}>
+              <MovieCard card={movie} />
+            </li>
+          ))
         )}
       </div>
     </>
