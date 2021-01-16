@@ -14,6 +14,7 @@ const MovieListPage = ({ type }) => {
   const [loading, setLoading] = useState(true);
   const [filterTerm, setFilterTerm] = useState("");
   const [sliderMarks, setSliderMarks] = useState([]);
+  const [sliderYearMarks, setSliderYearMarks] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,29 +57,44 @@ const MovieListPage = ({ type }) => {
   const handleSlider = (e) => {
     setSliderMarks(e);
   };
+  const handleSliderYear = (e) => {
+    setSliderYearMarks(e);
+  };
   return (
     <>
-      <SearchForm onChange={(e) => setFilterTerm(e.target.value)} />
-      <h1>Ratings</h1>
-      <Range
-        style={{ width: "400px" }}
-        max={10}
-        step={0.01}
-        marks={{ 0: sliderMarks[0], 10: sliderMarks[1] }}
-        onChange={handleSlider}
-      />
+      <div className="sidebar">
+        <h3 style={{ textAlign: "center" }}>Ratings</h3>
+        <Range
+          max={10}
+          step={0.01}
+          marks={{ 0: sliderMarks[0], 10: sliderMarks[1] }}
+          onChange={handleSlider}
+        />
+        <h3 style={{ textAlign: "center" }}>Year</h3>
+        <Range
+          min={1900}
+          max={2021}
+          step={1}
+          marks={{ 0: sliderYearMarks[0], 2021: sliderYearMarks[1] }}
+          onChange={handleSliderYear}
+        />
+      </div>
       <div>
-        {loading ? (
-          <h1>Loading</h1>
-        ) : (
-          filteredMovies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movie/${movie.id}`}>
-                <MovieCard card={movie} />
-              </Link>
-            </li>
-          ))
-        )}
+        <SearchForm onChange={(e) => setFilterTerm(e.target.value)} />
+
+        <div>
+          {loading ? (
+            <h1>Loading</h1>
+          ) : (
+            filteredMovies.map((movie) => (
+              <li key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>
+                  <MovieCard card={movie} />
+                </Link>
+              </li>
+            ))
+          )}
+        </div>
       </div>
     </>
   );
