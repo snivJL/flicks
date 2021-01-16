@@ -4,14 +4,14 @@ import "./searchform.scss";
 const SearchForm = ({ onChange }) => {
   return (
     <div>
-      <form onsubmit="event.preventDefault();" role="search">
-        <label for="search">Search for stuff</label>
+      <form role="search">
+        <label htmlFor="search">Search for stuff</label>
         <input
           id="search"
           type="search"
           onChange={onChange}
           placeholder="Filter..."
-          autofocus
+          autoFocus
           required
         />
         <button type="submit">Go</button>

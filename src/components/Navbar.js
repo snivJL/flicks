@@ -7,20 +7,39 @@ const Navbar = () => {
       <div className="page">
         <nav className="page__menu menu">
           <ul className="menu__list r-list">
+            <div className="logo">FLICKS</div>
+
             <li className="menu__group">
-              <div className="menu__link r-link text-underlined">
-                <Link to="/"> Top rated</Link>
-              </div>
+              <Link
+                className="menu__link  text-underlined"
+                id="trending"
+                to="/movie/popular"
+              >
+                Trending
+              </Link>
             </li>
             <li className="menu__group">
-              <div className="menu__link r-link text-underlined">
-                <Link to="/movies/upcoming"> Upcoming</Link>
-              </div>
+              <Link id="topRated" className="menu__link text-underlined" to="/">
+                Top rated
+              </Link>
             </li>
             <li className="menu__group">
-              <a href="#0" className="menu__link r-link text-underlined">
-                Option #3
-              </a>
+              <Link
+                className="menu__link  text-underlined"
+                id="upcoming"
+                to="/movie/upcoming"
+              >
+                Upcoming
+              </Link>
+            </li>
+            <li className="menu__group">
+              <Link
+                className="menu__link  text-underlined"
+                id="nowShowing"
+                to="/movie/nowshowing"
+              >
+                Now Showing
+              </Link>
             </li>
           </ul>
         </nav>

@@ -6,9 +6,32 @@ body {
     Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
   margin: 0;
   min-height: 100vh;
+  color: white;
 }
 
 .container {
   width: 1060px;
   margin: 0 auto;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+span {
+  color: white;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+.average-rating {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.ratings-stat {
+  margin-left: 10px;
 }

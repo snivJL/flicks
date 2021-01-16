@@ -13,10 +13,23 @@ function App() {
         <Switch>
           <Route path="/movie/:id" component={ShowMovieDetails} />
           <Route
-            path="/movies/upcoming"
-            component={(props) => <MovieListPage {...props} type="upcoming" />}
+            path="/movie/now_playing"
+            component={(props) => (
+              <MovieListPage {...props} type="now_playing" />
+            )}
           />
-          <Route path="/" component={MovieListPage} />
+          <Route
+            path="/movie/upcoming"
+            component={() => <MovieListPage type="upcoming" />}
+          />
+          <Route
+            path="/movie/popular"
+            component={(props) => <MovieListPage {...props} type="popular" />}
+          />
+          <Route
+            path="/"
+            component={() => <MovieListPage type="top_rated" />}
+          />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
