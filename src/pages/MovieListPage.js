@@ -13,8 +13,8 @@ const MovieListPage = ({ type }) => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterTerm, setFilterTerm] = useState("");
-  const [sliderMarks, setSliderMarks] = useState([]);
-  const [sliderYearMarks, setSliderYearMarks] = useState([]);
+  const [sliderMarks, setSliderMarks] = useState([0, 10]);
+  const [sliderYearMarks, setSliderYearMarks] = useState([1900, 2021]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,23 +36,25 @@ const MovieListPage = ({ type }) => {
     };
     fetchData();
   }, [type]);
-  useEffect(() => {
-    const filterMovies = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(filterTerm.toLowerCase())
-    );
-
-    setFilteredMovies(filterMovies);
-  }, [filterTerm, movies]);
 
   useEffect(() => {
-    const filterMovies = movies.filter(
-      (movie) =>
-        movie.vote_average >= sliderMarks[0] &&
-        movie.vote_average <= sliderMarks[1]
-    );
-    console.log(filterMovies);
+    const filterMovies = movies
+      .filter(
+        (movie) =>
+          movie.vote_average >= sliderMarks[0] &&
+          movie.vote_average <= sliderMarks[1]
+      )
+      .filter(
+        (date) =>
+          parseInt(date.release_date.slice(0.4)) >= sliderYearMarks[0] &&
+          parseInt(date.release_date.slice(0.4)) <= sliderYearMarks[1]
+      )
+      .filter((movie) =>
+        movie.title.toLowerCase().includes(filterTerm.toLowerCase())
+      );
+    console.log("FILTER MOVIE :", filterMovies);
     setFilteredMovies(filterMovies);
-  }, [sliderMarks]);
+  }, [sliderMarks, sliderYearMarks, filterTerm]);
 
   const handleSlider = (e) => {
     setSliderMarks(e);

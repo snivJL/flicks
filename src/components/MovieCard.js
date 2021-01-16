@@ -53,7 +53,7 @@ const MovieCard = ({ card }) => {
                 ? `${card.title.slice(0, 30)}...`
                 : card.title}
             </h1>
-            <h4>{card.release_date}</h4>
+            <h4>{card.release_date.slice(0, 4)}</h4>
             <span className="rating">
               <FontAwesomeIcon
                 style={{ fontSize: "2rem", color: "yellow" }}
@@ -63,7 +63,7 @@ const MovieCard = ({ card }) => {
                 <div>
                   <span className="average-rating">{card.vote_average}</span>/10
                 </div>
-                <div>{card.vote_count}</div>
+                <div>{card.vote_count} votes</div>
               </div>
             </span>
             {loading ? (
