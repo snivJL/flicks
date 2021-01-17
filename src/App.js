@@ -12,12 +12,10 @@ function App() {
       <Navbar />
       <div className="container">
         <Switch>
-          <Route path="/movie/:id" component={ShowMovieDetails} />
+          <Route exact path="/movie/:id" component={ShowMovieDetails} />
           <Route
             path="/movie/now_playing"
-            component={(props) => (
-              <MovieListPage {...props} type="now_playing" />
-            )}
+            component={() => <MovieListPage type="now_playing" />}
           />
           <Route
             path="/movie/upcoming"
@@ -25,7 +23,7 @@ function App() {
           />
           <Route
             path="/movie/popular"
-            component={(props) => <MovieListPage {...props} type="popular" />}
+            component={() => <MovieListPage type="popular" />}
           />
           <Route path="/carousel" component={CustomCarousel} />
           <Route

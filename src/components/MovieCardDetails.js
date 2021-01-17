@@ -33,7 +33,6 @@ const MovieCardDetails = ({ card }) => {
     };
 
     fetchData();
-    console.log("CARD DETAIL REVIEWS", reviews);
   }, []);
   return (
     <div>
@@ -46,10 +45,7 @@ const MovieCardDetails = ({ card }) => {
                 src={`https://image.tmdb.org/t/p/w500/${card.poster_path}`}
                 alt="poster"
               />
-              {console.log(
-                "URL",
-                `https://image.tmdb.org/t/p/w500/${card.poster_path}`
-              )}
+
               <h1>{card.title}</h1>
               <h4>{card.release_date.slice(0, 4)}</h4>
               <span className="rating">

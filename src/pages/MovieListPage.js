@@ -15,16 +15,16 @@ const MovieListPage = ({ type }) => {
   const [filterTerm, setFilterTerm] = useState("");
   const [sliderMarks, setSliderMarks] = useState([0, 10]);
   const [sliderYearMarks, setSliderYearMarks] = useState([1900, 2021]);
+  const [endPoint, setEndpoint] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const endpoint = type !== undefined ? type : "top_rated";
+      // const endpoint = type !== undefined ? type : "top_rated";
+      // console.log("TYPE", type);
       try {
         setLoading(true);
-        const res = await fetch(
-          `${API_URL}/movie/${endpoint}?api_key=${API_KEY}`
-        );
-        console.log(`${API_URL}/movie/${endpoint}?api_key=${API_KEY}`);
+        const res = await fetch(`${API_URL}/movie/${type}?api_key=${API_KEY}`);
+        console.log(`${API_URL}/movie/${type}?api_key=${API_KEY}`);
         const data = await res.json();
         console.log(data);
         setMovies(data.results);
@@ -34,8 +34,10 @@ const MovieListPage = ({ type }) => {
         console.log(error);
       }
     };
+    setEndpoint(type);
+
     fetchData();
-  }, [type]);
+  }, [endPoint]);
 
   useEffect(() => {
     const filterMovies = movies
