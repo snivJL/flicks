@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShareAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import ShowReviews from "./ShowReviews";
+import Genre from "./Genres";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
-const API_URL = process.env.REACT_APP_URL_API;
 
 const MovieCardDetails = ({ card }) => {
   const [loading, setLoading] = useState(true);
@@ -62,6 +62,7 @@ const MovieCardDetails = ({ card }) => {
                 </div>
               </span>
             </div>
+            <Genre card={card} />
             <div className="movie_desc">
               <p className="text">{card.overview}</p>
             </div>

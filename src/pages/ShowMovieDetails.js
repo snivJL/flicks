@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MovieCard from "../components/MovieCard";
 import MovieCardDetails from "../components/MovieCardDetails";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;

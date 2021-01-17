@@ -68,6 +68,7 @@ PRESENTATION STYLES
 
 .menu__list {
   display: flex;
+  align-items: center;
 }
 
 .menu__link {

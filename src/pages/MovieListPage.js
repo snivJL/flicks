@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import MovieCard from "../components/MovieCard";
-import Slider, { Range } from "rc-slider";
+import Sidebar from "../components/Sidebar";
+import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
@@ -11,12 +12,65 @@ const API_URL = process.env.REACT_APP_URL_API;
 const MovieListPage = ({ type }) => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [sortedMovies, setSortedMovies] = useState([]);
+  const [movieGenres, setMovieGenres] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [filterTerm, setFilterTerm] = useState("");
   const [sliderMarks, setSliderMarks] = useState([0, 10]);
   const [sliderYearMarks, setSliderYearMarks] = useState([1900, 2021]);
-  const [endPoint, setEndpoint] = useState("");
+  const [optionChanged, setOptionChanged] = useState(false);
 
+  const handleChangeSort = (e) => {
+    switch (e.target.value) {
+      case "ratingsAsc":
+        sortList("vote_average", ">");
+        break;
+      case "ratingsDesc":
+        sortList("vote_average", "<");
+        break;
+      case "popularityAsc":
+        sortList("popularity", ">");
+        break;
+      case "popularityDesc":
+        sortList("popularity", "<");
+        break;
+      default:
+        console.log(e.target.value);
+    }
+  };
+  const sortList = (criteria, type) => {
+    let arr = [];
+    criteria === "vote_average"
+      ? type === ">"
+        ? (arr = filteredMovies.sort((a, b) =>
+            b.vote_average < a.vote_average ? 1 : -1
+          ))
+        : (arr = filteredMovies.sort((a, b) =>
+            b.vote_average > a.vote_average ? 1 : -1
+          ))
+      : console.log(arr);
+    setSortedMovies(arr);
+    setOptionChanged(true);
+  };
+  //GET GENRE
+  useEffect(() => {
+    const getGenre = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=430811050a45e411c3025a7085596f92&language=en-US`
+        );
+        const data = await res.json();
+        setMovieGenres(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getGenre();
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       // const endpoint = type !== undefined ? type : "top_rated";
@@ -34,10 +88,9 @@ const MovieListPage = ({ type }) => {
         console.log(error);
       }
     };
-    setEndpoint(type);
 
     fetchData();
-  }, [endPoint]);
+  }, [type]);
 
   useEffect(() => {
     const filterMovies = movies
@@ -56,7 +109,7 @@ const MovieListPage = ({ type }) => {
       );
     console.log("FILTER MOVIE :", filterMovies);
     setFilteredMovies(filterMovies);
-  }, [sliderMarks, sliderYearMarks, filterTerm]);
+  }, [sliderMarks, sliderYearMarks, filterTerm, optionChanged]);
 
   const handleSlider = (e) => {
     setSliderMarks(e);
@@ -67,20 +120,12 @@ const MovieListPage = ({ type }) => {
   return (
     <>
       <div className="sidebar">
-        <h3 style={{ textAlign: "center" }}>Ratings</h3>
-        <Range
-          max={10}
-          step={0.01}
-          marks={{ 0: sliderMarks[0], 10: sliderMarks[1] }}
-          onChange={handleSlider}
-        />
-        <h3 style={{ textAlign: "center" }}>Year</h3>
-        <Range
-          min={1900}
-          max={2021}
-          step={1}
-          marks={{ 0: sliderYearMarks[0], 2021: sliderYearMarks[1] }}
-          onChange={handleSliderYear}
+        <Sidebar
+          handleSlider={handleSlider}
+          sliderMarks={sliderMarks}
+          handleSliderYear={handleSliderYear}
+          sliderYearMarks={sliderYearMarks}
+          handleChangeSort={handleChangeSort}
         />
       </div>
       <div>
@@ -89,11 +134,17 @@ const MovieListPage = ({ type }) => {
         <div>
           {loading ? (
             <h1>Loading</h1>
-          ) : (
+          ) : sortedMovies.length === 0 ? (
             filteredMovies.map((movie) => (
               <li key={movie.id}>
+                <MovieCard movieGenres={movieGenres} card={movie} />
+              </li>
+            ))
+          ) : (
+            sortedMovies.map((movie) => (
+              <li key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
-                  <MovieCard card={movie} />
+                  <MovieCard movieGenres={movieGenres} card={movie} />
                 </Link>
               </li>
             ))

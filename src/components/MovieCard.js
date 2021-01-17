@@ -9,31 +9,16 @@ import { faHeart, faShareAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 
 // URL TO FETCH GENRE
 
-const MovieCard = ({ card }) => {
+const MovieCard = ({ movieGenres, card }) => {
   // const [genres, setGenres] = useState([]);
   const [movieGenre, setMovieGenre] = useState([]);
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          `https://api.themoviedb.org/3/genre/movie/list?api_key=430811050a45e411c3025a7085596f92&language=en-US`
-        );
-        const data = await res.json();
-        setMovieGenre(
-          Object.values(data.genres)
-            .map((genre) => card.genres.filter((gen) => gen.id === genre.id))
-            .filter((x) => x.length === 1)
-            .flat()
-        );
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
+    setMovieGenre(
+      movieGenres.genres.reduce((acc, genre) => {
+        if (card.genre_ids.includes(genre.id)) acc.push(genre.name);
+        return acc;
+      }, [])
+    );
   }, []);
   const toggleClassName = (e) => {
     e.target.parentNode.style.cssText.includes("red")
@@ -68,17 +53,15 @@ const MovieCard = ({ card }) => {
                 <div>{card.vote_count} votes</div>
               </div>
             </span>
-            {loading ? (
-              <p>Loading</p>
-            ) : (
+            {
               <>
                 {movieGenre.map((gen) => (
-                  <p key={gen.id} className="minutes">
-                    {gen.name}
+                  <p key={gen} className="minutes">
+                    {gen}
                   </p>
                 ))}
               </>
-            )}
+            }
           </div>
           <div className="movie_desc">
             <p className="text">
