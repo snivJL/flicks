@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import MovieCardDetails from "../components/MovieCardDetails";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
 const API_URL = process.env.REACT_APP_URL_API;
@@ -25,7 +26,9 @@ const ShowMovieDetails = () => {
     fetchData();
   }, [id]);
 
-  return <div>{loading ? <h1>Loading</h1> : <MovieCard card={movie} />}</div>;
+  return (
+    <div>{loading ? <h1>Loading</h1> : <MovieCardDetails card={movie} />}</div>
+  );
 };
 
 export default ShowMovieDetails;

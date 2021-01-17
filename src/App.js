@@ -1,6 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import CustomCarousel from "./components/CustomCarousel";
 import ShowMovieDetails from "./pages/ShowMovieDetails";
 import MovieListPage from "./pages/MovieListPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -26,6 +27,7 @@ function App() {
             path="/movie/popular"
             component={(props) => <MovieListPage {...props} type="popular" />}
           />
+          <Route path="/carousel" component={CustomCarousel} />
           <Route
             path="/"
             component={() => <MovieListPage type="top_rated" />}

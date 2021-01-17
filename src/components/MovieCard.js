@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./moviecard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+
 import { faHeart, faShareAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 
 // https://api.themoviedb.org/3/genre/movie/list?api_key=430811050a45e411c3025a7085596f92&language=en-US
@@ -84,7 +86,15 @@ const MovieCard = ({ card }) => {
                 ? `${card.overview.slice(0, 250)}...`
                 : card.overview}
             </p>
+            <div className="button-see-more">
+              <Link to={`/movie/${card.id}`}>
+                See More
+                <span className="shift">›</span>
+              </Link>
+              <div className="mask"></div>
+            </div>
           </div>
+
           <div className="movie_social">
             <ul>
               <li onClick={toggleClassName}>
