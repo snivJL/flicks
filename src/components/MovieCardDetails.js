@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShareAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import ShowReviews from "./ShowReviews";
+import Trend from "../trend.png";
 import Genre from "./Genres";
 import { Link } from "react-router-dom";
 
@@ -62,7 +63,6 @@ const MovieCardDetails = ({ card }) => {
                 src={`https://image.tmdb.org/t/p/w500/${card.poster_path}`}
                 alt="poster"
               />
-
               <h1>{card.title}</h1>
               <h4>{card.release_date.slice(0, 4)}</h4>
               <span className="rating">
@@ -76,6 +76,12 @@ const MovieCardDetails = ({ card }) => {
                     /10
                   </div>
                   <div>{card.vote_count} votes</div>
+                </div>
+                <div className="trend">
+                  <img src={Trend} alt="trend" />
+                  <span className="average-rating">
+                    {Math.floor(card.popularity)}
+                  </span>
                 </div>
               </span>
             </div>

@@ -36,7 +36,7 @@ const Navbar = () => {
               <Link
                 className="menu__link  text-underlined"
                 id="nowShowing"
-                to="/movie/nowshowing"
+                to="/movie/now_playing"
               >
                 Now Showing
               </Link>

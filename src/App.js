@@ -12,7 +12,6 @@ function App() {
       <Navbar />
       <div className="container">
         <Switch>
-          <Route exact path="/movie/:id" component={ShowMovieDetails} />
           <Route
             path="/movie/now_playing"
             component={() => <MovieListPage type="now_playing" />}
@@ -25,6 +24,8 @@ function App() {
             path="/movie/popular"
             render={(props) => <MovieListPage {...props} type="popular" />}
           />
+          <Route exact path="/movie/:id" component={ShowMovieDetails} />
+
           <Route path="/carousel" component={CustomCarousel} />
           <Route
             exact

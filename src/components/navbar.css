@@ -153,8 +153,8 @@ DEMO
   text-decoration: none;
 }
 
-@media only screen and (min-width: 600px) {
-  .menu_list {
+@media only screen and (max-width: 800px) {
+  .menu__list {
     display: flex;
     align-items: center;
     flex-direction: column;
