@@ -5,11 +5,11 @@ DEPENDENCES
 */
 
 .r-link {
-  display: var(--rLinkDisplay, inline-flex) !important;
+  /* display: var(--rLinkDisplay, inline-flex); */
 }
 
 .r-link[href] {
-  /* text-decoration: var(--rLinkTextDecoration, none) !important; */
+  text-decoration: var(--rLinkTextDecoration, none) !important;
 }
 
 .r-list {
@@ -151,4 +151,12 @@ DEMO
 #trending {
   color: white;
   text-decoration: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .menu_list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }

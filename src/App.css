@@ -198,3 +198,55 @@ span {
 .sidebar-sort {
   margin-top: 50px;
 }
+.similar-movies {
+  margin: 50px 0 0 10px;
+}
+.slideshow {
+  display: flex;
+  margin: 25px 0 0 0;
+}
+.slideshow a {
+  color: white;
+  text-decoration: none;
+}
+.slideshow a:hover {
+  transform: scale(1.02);
+  font-size: 700;
+  transition: all 0.2s;
+}
+.slideshow img {
+  width: 100px;
+  margin-right: 5px;
+}
+.slideshow-title {
+  padding-right: 5px;
+}
+/* 
+  Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-content: center;
+  }
+  .movie_card {
+    margin: 10px;
+  }
+  .sidebar {
+    justify-self: center;
+  }
+  .menu_list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) 
+  */
+/* @media only screen and (min-width: 600px) {
+  ...;
+} */

@@ -23,10 +23,11 @@ function App() {
           />
           <Route
             path="/movie/popular"
-            component={() => <MovieListPage type="popular" />}
+            render={(props) => <MovieListPage {...props} type="popular" />}
           />
           <Route path="/carousel" component={CustomCarousel} />
           <Route
+            exact
             path="/"
             component={() => <MovieListPage type="top_rated" />}
           />

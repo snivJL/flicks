@@ -133,12 +133,15 @@ body {
     background-position: -148% 50%;
     background-size: 110%;
   }
+  movie_card {
+    margin: 30px 10px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .movie_card {
     width: 95%;
-    margin: 30px auto;
+    margin: 30px 10px;
     min-height: 350px;
     height: auto;
   }
@@ -199,7 +202,7 @@ body {
   position: relative;
   display: block;
   width: 1000px;
-  height: 620px;
+  height: 720px;
   margin: 30px auto 0 auto;
   overflow: hidden;
   border-radius: 10px;
@@ -218,7 +221,7 @@ body {
     .movie_header {
       position: relative;
       padding: 25px;
-      height: 40%;
+      height: fit-content;
       h1 {
         color: #fff;
         font-weight: 400;
@@ -258,6 +261,7 @@ body {
     .movie_social {
       height: 10%;
       padding-left: 15px;
+      margin-top: 100px;
       padding-bottom: 20px;
       ul {
         list-style: none;

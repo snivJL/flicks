@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import MovieCard from "../components/MovieCard";
 import Sidebar from "../components/Sidebar";
-import { Range } from "rc-slider";
+import Spinner from "../components/Spinner";
 import "rc-slider/assets/index.css";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
@@ -14,13 +14,11 @@ const MovieListPage = ({ type }) => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
   const [movieGenres, setMovieGenres] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [filterTerm, setFilterTerm] = useState("");
   const [sliderMarks, setSliderMarks] = useState([0, 10]);
   const [sliderYearMarks, setSliderYearMarks] = useState([1900, 2021]);
   const [optionChanged, setOptionChanged] = useState(false);
-
   const handleChangeSort = (e) => {
     switch (e.target.value) {
       case "ratingsAsc":
@@ -74,7 +72,7 @@ const MovieListPage = ({ type }) => {
   useEffect(() => {
     const fetchData = async () => {
       // const endpoint = type !== undefined ? type : "top_rated";
-      // console.log("TYPE", type);
+      console.log("TYPE", type);
       try {
         setLoading(true);
         const res = await fetch(`${API_URL}/movie/${type}?api_key=${API_KEY}`);
@@ -133,7 +131,7 @@ const MovieListPage = ({ type }) => {
 
         <div>
           {loading ? (
-            <h1>Loading</h1>
+            <Spinner />
           ) : sortedMovies.length === 0 ? (
             filteredMovies.map((movie) => (
               <li key={movie.id}>

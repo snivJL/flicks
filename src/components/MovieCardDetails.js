@@ -3,12 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShareAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import ShowReviews from "./ShowReviews";
 import Genre from "./Genres";
+import { Link } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_BACKEND_API_KEY;
 
 const MovieCardDetails = ({ card }) => {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
+
   const toggleClassName = (e) => {
     e.target.parentNode.style.cssText.includes("red")
       ? (e.target.parentNode.style.cssText = "font-size: 1.5rem;")
@@ -16,7 +19,7 @@ const MovieCardDetails = ({ card }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchReviews = async () => {
       try {
         setLoading(true);
         const res = await fetch(
@@ -26,14 +29,28 @@ const MovieCardDetails = ({ card }) => {
         console.log(data);
 
         setReviews(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const fetchRecommendations = async () => {
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${card.id}/recommendations?api_key=${API_KEY}`
+        );
+        const data = await res.json();
+        console.log("RECOMMENDATION", data);
+
+        setRecommendations(data.results);
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
-
-    fetchData();
+    fetchReviews();
+    fetchRecommendations();
   }, []);
+  console.log(card);
   return (
     <div>
       <>
@@ -65,6 +82,22 @@ const MovieCardDetails = ({ card }) => {
             <Genre card={card} />
             <div className="movie_desc">
               <p className="text">{card.overview}</p>
+              <div className="similar-movies">
+                <h3>You will also like</h3>
+                <div className="slideshow">
+                  {recommendations.slice(0, 4).map((reco) => (
+                    <Link to={`/movie/${reco.id}`}>
+                      <div className="slideshow-card">
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${reco.poster_path}`}
+                          alt="poster"
+                        />
+                        <p className="slideshow-title">{reco.title}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="movie_social">
               <ul>
