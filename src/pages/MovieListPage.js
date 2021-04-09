@@ -127,7 +127,7 @@ const MovieListPage = ({ type }) => {
         />
       </div>
       <div>
-        <SearchForm onChange={(e) => setFilterTerm(e.target.value)} />
+        {/* <SearchForm onChange={handleChange} /> */}
 
         <div>
           {loading ? (
